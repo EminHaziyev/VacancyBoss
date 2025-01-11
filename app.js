@@ -152,6 +152,7 @@ function pingServer() {
             console.log("Error pinging server:", err);
         });
 }
+setInterval(pingServer, 1000*60*5);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
