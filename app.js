@@ -121,17 +121,17 @@ async function search_v1(siteName,siteUrl,siteVacancySelector,siteCreatorSelecto
 }
 async function searchAll(){
     await search_v1("busy.az","https://busy.az/vacancies?categories%5B%5D=12&categories%5B%5D=81&categories%5B%5D=82&categories%5B%5D=83&categories%5B%5D=84&categories%5B%5D=85&categories%5B%5D=86&categories%5B%5D=87&categories%5B%5D=88&categories%5B%5D=90&categories%5B%5D=91&categories%5B%5D=92&categories%5B%5D=93&categories%5B%5D=154&fullSelect=on&minimum_salary=&maximum_salary=",".job-listing-title",".job-listing-footer ul li i.icon-material-outline-business",".with-apply-button");
-    await delay(10000);
+   
     await search_v1("jobsearch.az","https://classic.jobsearch.az/vacancies?category=1076",".vacancies__title a",".vacancies__provided span",".vacancies__title a");
-    await delay(10000);
+    
     await search_v1("boss.az","https://boss.az/vacancies.mobile?search%5Bcategory_id%5D=38",".collection-i-link",".collection-i-company",".collection-i-link");
-    await delay(10000);
+    
     await search_v1("offer.az","https://www.offer.az/category/it-vakansiyalari/",".job-card__title",".job-card__meta em",".job-card__title");
-    await delay(10000);
+    
     await search_v1("ejob.az","https://ejob.az/is-elanlari/informasiya-texnologiyalari/",".job-card__title",".job-card__meta em",".job-card__title");
-    await delay(10000);
+    
     await search_v2("hellojob.az","https://www.hellojob.az/is-elanlari/texnologiya",".vacancies__desc h3",".vacancy_item_company",".vacancies__item");
-    await delay(10000);
+    
     await search_v2("smartjob.az","https://smartjob.az/vacancies?job_category_id[]=1",".brows-job-position h3 a",".company-title a",".brows-job-position h3 a");
 
 }
