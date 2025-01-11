@@ -2,6 +2,12 @@ require("dotenv").config();
 const mongoose = require("mongoose")
 const axios = require("axios");
 const puppeteer = require("puppeteer");
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
+app.get("/ping", (req, res) => {
+    res.send("Server is alive");
+});
 
 mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true });
 const siteSchema = {
@@ -136,3 +142,16 @@ async function searchAll(){
 
 }
 setInterval(searchAll, 1000*60*4);
+function pingServer() {
+    const serverUrl = "http://localhost:3000/ping"; // Your ping route
+    axios.get(serverUrl)
+        .then(response => {
+            console.log("Server ping successful:", response.status);
+        })
+        .catch(err => {
+            console.log("Error pinging server:", err);
+        });
+}
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
