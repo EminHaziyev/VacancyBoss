@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const axios = require("axios");
 const puppeteer = require("puppeteer");
 
-mongoose.connect(process.env.MONGO);
+mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true });
 const siteSchema = {
     name:{
         type: String,
