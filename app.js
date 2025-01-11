@@ -143,7 +143,7 @@ async function searchAll(){
 }
 setInterval(searchAll, 1000*60*4);
 function pingServer() {
-    const serverUrl = "http://localhost:3000/ping"; // Your ping route
+    const serverUrl = "https://vacancyboss.onrender.com/ping"; // Your ping route
     axios.get(serverUrl)
         .then(response => {
             console.log("Server ping successful:", response.status);
