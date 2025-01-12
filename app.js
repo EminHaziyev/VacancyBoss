@@ -49,7 +49,7 @@ async function search_v2(siteName, siteUrl, siteVacancySelector, siteCreatorSele
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2" , timeout: 60000 });
 
-        wait page.waitForSelector(siteVacancySelector, { timeout: 120000 });
+        await page.waitForSelector(siteVacancySelector, { timeout: 120000 });
         const newVacancyName = await page.$$eval(siteVacancySelector, elements => {
 
             if (elements.length > 1) {
