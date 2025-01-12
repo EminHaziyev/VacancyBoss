@@ -44,7 +44,11 @@ async function search_v2(siteName, siteUrl, siteVacancySelector, siteCreatorSele
     const name = siteName;
     const url = siteUrl;
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true, // Ensure headless mode
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add necessary arguments
+            timeout: 120000 // Increase timeout to 120 seconds
+        });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2" , timeout: 60000 });
@@ -98,7 +102,11 @@ async function search_v1(siteName, siteUrl, siteVacancySelector, siteCreatorSele
     const name = siteName;
     const url = siteUrl;
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true, // Ensure headless mode
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add necessary arguments
+            timeout: 120000 // Increase timeout to 120 seconds
+        });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
@@ -145,7 +153,11 @@ async function search_v3(siteName, siteUrl, siteVacancySelector, siteCreatorSele
     const name = siteName;
     const url = siteUrl;
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true, // Ensure headless mode
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add necessary arguments
+            timeout: 120000 // Increase timeout to 120 seconds
+        });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
