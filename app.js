@@ -49,7 +49,7 @@ async function search_v2(siteName, siteUrl, siteVacancySelector, siteCreatorSele
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2" , timeout: 60000 });
 
-        await page.waitForSelector(siteCreatorSelector);
+        // await page.waitForSelector(siteCreatorSelector);
         const newVacancyName = await page.$$eval(siteVacancySelector, elements => {
 
             if (elements.length > 1) {
@@ -103,7 +103,7 @@ async function search_v1(siteName, siteUrl, siteVacancySelector, siteCreatorSele
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
 
-        await page.waitForSelector(siteVacancySelector);
+        // await page.waitForSelector(siteVacancySelector);
         const newVacancyName = await page.$eval(siteVacancySelector, element => {
 
             return element.textContent.trim();
@@ -150,7 +150,7 @@ async function search_v3(siteName, siteUrl, siteVacancySelector, siteCreatorSele
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
 
-        await page.waitForSelector(siteVacancySelector, { timeout: 60000 });
+        // await page.waitForSelector(siteVacancySelector, { timeout: 60000 });
         const newVacancyName = await page.$eval(siteVacancySelector, element => {
 
             return element.textContent.trim();
