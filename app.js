@@ -150,7 +150,7 @@ async function search_v3(siteName, siteUrl, siteVacancySelector, siteCreatorSele
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
 
-        await page.waitForSelector(siteVacancySelector);
+        await page.waitForSelector(siteVacancySelector, { timeout: 60000 });
         const newVacancyName = await page.$eval(siteVacancySelector, element => {
 
             return element.textContent.trim();
@@ -209,7 +209,7 @@ async function searchAll() {
     }
 
 }
-setInterval(searchAll, 1000*60*4 );
+searchAll();
 function pingServer() {
     const serverUrl = "https://vacancyboss.onrender.com/ping"; // Your ping route
     axios.get(serverUrl)
