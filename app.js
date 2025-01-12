@@ -44,11 +44,7 @@ async function search_v2(siteName, siteUrl, siteVacancySelector, siteCreatorSele
     const name = siteName;
     const url = siteUrl;
     try {
-        const browser = await puppeteer.launch({
-            headless: true, // Ensure headless mode
-            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add necessary arguments
-            timeout: 120000 // Increase timeout to 120 seconds
-        });
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2" , timeout: 60000 });
@@ -102,11 +98,7 @@ async function search_v1(siteName, siteUrl, siteVacancySelector, siteCreatorSele
     const name = siteName;
     const url = siteUrl;
     try {
-        const browser = await puppeteer.launch({
-            headless: true, // Ensure headless mode
-            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add necessary arguments
-            timeout: 120000 // Increase timeout to 120 seconds
-        });
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
@@ -153,11 +145,7 @@ async function search_v3(siteName, siteUrl, siteVacancySelector, siteCreatorSele
     const name = siteName;
     const url = siteUrl;
     try {
-        const browser = await puppeteer.launch({
-            headless: true, // Ensure headless mode
-            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add necessary arguments
-            timeout: 120000 // Increase timeout to 120 seconds
-        });
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
@@ -202,7 +190,7 @@ async function search_v3(siteName, siteUrl, siteVacancySelector, siteCreatorSele
 async function searchAll() {
 
     try {
-        search_v1("jobsearch.az", "https://classic.jobsearch.az/vacancies?category=1076", "#vacancies .vacancies__item:nth-of-type(1) li h2 a", "#vacancies .vacancies__item:nth-of-type(1) li:nth-of-type(2) a", "#vacancies .vacancies__item:nth-of-type(1) li h2 a");
+        // search_v1("jobsearch.az", "https://classic.jobsearch.az/vacancies?category=1076", "#vacancies .vacancies__item:nth-of-type(1) li h2 a", "#vacancies .vacancies__item:nth-of-type(1) li:nth-of-type(2) a", "#vacancies .vacancies__item:nth-of-type(1) li h2 a");
 
         search_v1("boss.az", "https://boss.az/vacancies.mobile?search%5Bcategory_id%5D=38", ".collection-i-link", ".collection-i-company", ".collection-i-link");
 
