@@ -181,7 +181,7 @@ async function searchAll(){
     await search_v3("busy.az","https://busy.az/vacancies?categories%5B%5D=12&categories%5B%5D=81&categories%5B%5D=82&categories%5B%5D=83&categories%5B%5D=84&categories%5B%5D=85&categories%5B%5D=86&categories%5B%5D=87&categories%5B%5D=88&categories%5B%5D=90&categories%5B%5D=91&categories%5B%5D=92&categories%5B%5D=93&categories%5B%5D=154&fullSelect=on&minimum_salary=&maximum_salary=",".job-listing-title",".job-listing-footer ul li i.icon-material-outline-business",".with-apply-button");
 
 }
-setInterval(searchAll, 1000*60);
+setInterval(searchAll, 1000*60*4);
 function pingServer() {
     const serverUrl = "https://vacancyboss.onrender.com/ping"; // Your ping route
     axios.get(serverUrl)
