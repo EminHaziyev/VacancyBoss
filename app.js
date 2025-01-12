@@ -104,6 +104,45 @@ async function search_v1(siteName,siteUrl,siteVacancySelector,siteCreatorSelecto
 
         const newVacancyCreator = await page.$eval(siteCreatorSelector, element => {
       
+            return element.textContent.trim();
+            
+        });
+        const newVacancyLink = await page.$eval(siteLinkSelector, element => {
+      
+            return element.href;
+            
+        });
+        const site = await Site.findOne({name});
+        
+        if(newVacancyName != site.lastVacancy){
+            
+            sendVacancy(siteName,newVacancyName,newVacancyCreator,newVacancyLink);
+        }
+        
+        await browser.close();
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+//saerch_v3 because busy.az has different structure
+async function search_v3(siteName,siteUrl,siteVacancySelector,siteCreatorSelector,siteLinkSelector) {
+    const name = siteName;
+    const url = siteUrl;
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto(url, { waitUntil: "networkidle2" });
+        
+        await page.waitForSelector(siteVacancySelector);
+        const newVacancyName = await page.$eval(siteVacancySelector, element => {
+
+                return element.textContent.trim(); 
+            
+        });
+
+        const newVacancyCreator = await page.$eval(siteCreatorSelector, element => {
+      
             return element.nextSibling.textContent.trim();
             
         });
@@ -126,7 +165,6 @@ async function search_v1(siteName,siteUrl,siteVacancySelector,siteCreatorSelecto
     }
 }
 async function searchAll(){
-    await search_v1("busy.az","https://busy.az/vacancies?categories%5B%5D=12&categories%5B%5D=81&categories%5B%5D=82&categories%5B%5D=83&categories%5B%5D=84&categories%5B%5D=85&categories%5B%5D=86&categories%5B%5D=87&categories%5B%5D=88&categories%5B%5D=90&categories%5B%5D=91&categories%5B%5D=92&categories%5B%5D=93&categories%5B%5D=154&fullSelect=on&minimum_salary=&maximum_salary=",".job-listing-title",".job-listing-footer ul li i.icon-material-outline-business",".with-apply-button");
    
     await search_v1("jobsearch.az","https://classic.jobsearch.az/vacancies?category=1076",".vacancies__title a",".vacancies__provided span",".vacancies__title a");
     
@@ -140,8 +178,10 @@ async function searchAll(){
     
     await search_v2("smartjob.az","https://smartjob.az/vacancies?job_category_id[]=1",".brows-job-position h3 a",".company-title a",".brows-job-position h3 a");
 
+    await search_v3("busy.az","https://busy.az/vacancies?categories%5B%5D=12&categories%5B%5D=81&categories%5B%5D=82&categories%5B%5D=83&categories%5B%5D=84&categories%5B%5D=85&categories%5B%5D=86&categories%5B%5D=87&categories%5B%5D=88&categories%5B%5D=90&categories%5B%5D=91&categories%5B%5D=92&categories%5B%5D=93&categories%5B%5D=154&fullSelect=on&minimum_salary=&maximum_salary=",".job-listing-title",".job-listing-footer ul li i.icon-material-outline-business",".with-apply-button");
+
 }
-setInterval(searchAll, 1000*60*4);
+setInterval(searchAll, 1000*60);
 function pingServer() {
     const serverUrl = "https://vacancyboss.onrender.com/ping"; // Your ping route
     axios.get(serverUrl)
