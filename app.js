@@ -145,52 +145,7 @@ async function search_v1(siteName, siteUrl, siteVacancySelector, siteCreatorSele
 
 
 
-async function search_glorri(siteName, siteUrl, siteVacancySelector, siteCreatorSelector, siteLinkSelector) {
-    const name = siteName;
-    const url = siteUrl;
-    try {
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(60000);
-        await page.goto(url, { waitUntil: "networkidle2", timeout: 60000  });
 
-        await page.waitForSelector(siteVacancySelector);
-        const newVacancyName = await page.$eval(siteVacancySelector, element => {
-
-            return element.textContent.trim();
-
-        });
-
-        const newVacancyCreator = await page.$eval(siteCreatorSelector, element => {
-
-            return element.textContent.trim();
-
-        });
-        const newVacancyLink = await page.$eval(siteLinkSelector, element => {
-
-            return element.href;
-
-        });
-        const site = await Site.findOne({ name });
-
-        if (newVacancyName != site.lastVacancy) {
-
-            sendVacancy(siteName, newVacancyName, newVacancyCreator, newVacancyLink);
-            await browser.close();
-            return false;
-        }
-        else{
-            
-            await browser.close();
-            return false;
-        }
-
-        
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
 //saerch_v3 because busy.az has different structure
 async function search_v3(siteName, siteUrl, siteVacancySelector, siteCreatorSelector, siteLinkSelector) {
     const name = siteName;
