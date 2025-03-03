@@ -199,7 +199,7 @@ async function searchAll() {
 
         await search_v1("boss.az (IT)", "https://boss.az/vacancies.mobile?search%5Bcategory_id%5D=38", ".collection-i-link", ".collection-i-company", ".collection-i-link");
 
-        await search_v1("offer.az (IT)", "https://www.offer.az/category/it-vakansiyalari/", ".job-card__title", ".job-card__meta em", ".job-card__title");
+        // await search_v1("offer.az (IT)", "https://www.offer.az/category/it-vakansiyalari/", ".job-card__title", ".job-card__meta em", ".job-card__title"); HOST SUSPENDED
 
         await search_v2("hellojob.az (IT)", "https://www.hellojob.az/is-elanlari/texnologiya", ".vacancies__desc h3", ".vacancy_item_company", ".vacancies__item");
 
