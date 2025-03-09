@@ -24,7 +24,7 @@ const Site = mongoose.model("Site", siteSchema);
 
 async function sendVacancy(siteName, vacancyName, vacancyHost, vacancyLink) {
     const url = `https://api.telegram.org/bot${process.env.BOT_ID}/sendMessage`;
-    const message = `<i>Yeni vakansiya🆕</i>\n_____________\n<strong>${vacancyName}</strong> \n${vacancyHost}\n_____________\nVakansiya saytı: <b>${siteName}</b> \Keçid⬇️\n${vacancyLink}\n\nVacancyBoss ilə bütün vakansiyalardan anında xəbərdar olun: `;
+    const message = `<i>Yeni vakansiya🆕</i>\n_____________\n<strong>${vacancyName}</strong> \n${vacancyHost}\n_____________\nVakansiya saytı: <b>${siteName}</b> \Keçid⬇️\n${vacancyLink}\n\nVacancyBoss ilə bütün vakansiyalardan ən tez xəbərdar olun: `;
     try {
         const response = await axios.post(url, {
             chat_id: process.env.CHAT_ID,
